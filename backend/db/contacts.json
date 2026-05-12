@@ -1,0 +1,18 @@
+[
+  {
+    "id": "867404f7-4a23-4cae-9059-8825e5756ca6",
+    "name": "Test",
+    "email": "test@test.com",
+    "subject": "",
+    "message": "Hello",
+    "createdAt": "2026-04-21T15:10:29.333Z"
+  },
+  {
+    "id": "6d07c0a9-11e6-4d79-a7e3-776240e81cbb",
+    "name": "Test",
+    "email": "test@test.com",
+    "subject": "",
+    "message": "Hello world",
+    "createdAt": "2026-04-21T15:11:08.889Z"
+  }
+]

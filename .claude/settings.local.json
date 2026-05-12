@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /c/Users/vasea/Desktop/hard_compare/backend/middleware /c/Users/vasea/Desktop/hard_compare/backend/routes /c/Users/vasea/Desktop/hard_compare/backend/data /c/Users/vasea/Desktop/hard_compare/backend/db)",
+      "Bash(echo \"[]\")",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(node server.js)",
+      "Bash(curl -s http://localhost:3001/api/health)",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/signin -H 'Content-Type: application/json' -d '{\"email\":\"admin@hardcompare.com\",\"password\":\"admin123\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('signin OK, user:', d['user']['name'], 'role:', d['user']['role']\\)\")",
+      "Bash(curl -s http://localhost:3001/api/models)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('models OK, count:', len\\(d\\)\\)\")",
+      "Bash(curl -s http://localhost:3001/api/guides)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('guides OK, count:', len\\(d\\)\\)\")",
+      "Bash(curl -s -X POST http://localhost:3001/api/contact -H 'Content-Type: application/json' -d '{\"name\":\"Test\",\"email\":\"test@test.com\",\"message\":\"Hello\"}')",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('contact OK:', d['message'][:40]\\)\")",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>{const r=JSON.parse\\(d\\); console.log\\('signin OK, user:', r.user?.name, 'role:', r.user?.role, 'token:', r.token?.slice\\(0,20\\)+'...'\\)}\\)\")",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>console.log\\('laptops:', JSON.parse\\(d\\).length\\)\\)\")",
+      "Bash(curl -s -X POST http://localhost:3001/api/contact -H 'Content-Type: application/json' -d '{\"name\":\"Test\",\"email\":\"test@test.com\",\"message\":\"Hello world\"}')",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>{ const r=JSON.parse\\(d\\); console.log\\('stats:', JSON.stringify\\(r\\)\\) }\\)\")",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"Jane Doe\",\"email\":\"jane@test.com\",\"password\":\"password123\"}')",
+      "Bash(node -e \"let d=''; process.stdin.on\\('data',c=>d+=c\\); process.stdin.on\\('end',\\(\\)=>{ const r=JSON.parse\\(d\\); console.log\\('signup:', r.user?.name, r.error || ''\\) }\\)\")",
+      "Bash(pkill -f \"node server.js\")",
+      "Bash(netstat -ano)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"Vasea Test\",\"email\":\"vasea@test.com\",\"password\":\"pass123\"}')",
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"Fake Admin\",\"email\":\"admin@hardcompare.com\",\"password\":\"hack123\"}')"
+    ]
+  }
+}

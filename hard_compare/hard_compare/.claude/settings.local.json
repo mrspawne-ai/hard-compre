@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install tailwindcss @tailwindcss/vite)",
+      "Bash(npm run build)"
+    ]
+  }
+}
