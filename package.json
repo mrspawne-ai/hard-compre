@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently --names \"API,UI\" --prefix-colors \"cyan,magenta\" \"npm run dev --prefix backend\" \"npm run dev --prefix hard_compare/hard_compare\""
+    "dev": "concurrently --names \"API,UI\" --prefix-colors \"cyan,magenta\" \"dotnet run --project backend-csharp\" \"npm run dev --prefix hard_compare/hard_compare\""
   },
   "keywords": [],
   "author": "",
