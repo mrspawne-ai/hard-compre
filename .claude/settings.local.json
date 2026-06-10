@@ -25,7 +25,12 @@
       "Bash(netstat -ano)",
       "Bash(node -e ' *)",
       "Bash(curl -s -X POST http://localhost:3001/api/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"Vasea Test\",\"email\":\"vasea@test.com\",\"password\":\"pass123\"}')",
-      "Bash(curl -s -X POST http://localhost:3001/api/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"Fake Admin\",\"email\":\"admin@hardcompare.com\",\"password\":\"hack123\"}')"
+      "Bash(curl -s -X POST http://localhost:3001/api/auth/signup -H 'Content-Type: application/json' -d '{\"name\":\"Fake Admin\",\"email\":\"admin@hardcompare.com\",\"password\":\"hack123\"}')",
+      "Bash(dotnet build *)",
+      "PowerShell(& \"C:\\\\Program Files\\\\dotnet\\\\dotnet.exe\" --list-sdks; & \"C:\\\\Program Files\\\\dotnet\\\\dotnet.exe\" --list-runtimes)",
+      "Bash(cp /c/Users/vasea/Desktop/hard_compare/backend/db/users.json /c/Users/vasea/Desktop/hard_compare/backend-csharp/db/users.json)",
+      "Bash(cp /c/Users/vasea/Desktop/hard_compare/backend/db/contacts.json /c/Users/vasea/Desktop/hard_compare/backend-csharp/db/contacts.json)",
+      "PowerShell(dotnet build *)"
     ]
   }
 }

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "e6adfd14-20f4-46d8-98e2-8b28abec5e92",
+    "name": "Admin",
+    "email": "admin@hardcompare.com",
+    "passwordHash": "$2a$10$KyviQKyO6nbx1FCsuiw7k.XVWp62.FJ3jeRh4UI2wqECS/aX8KIxW",
+    "role": "admin",
+    "plan": "Pro",
+    "joinDate": "January 2026",
+    "status": "active",
+    "createdAt": "2026-04-21T15:10:07.909Z"
+  },
+  {
+    "id": "10668cd2-77c9-4214-864c-9b4add92ca07",
+    "name": "Vasea Test",
+    "email": "vasea@test.com",
+    "passwordHash": "$2a$10$01Fv1g27NT74g4WecJCQieRZInNgnv36wl1J81lIocHrt6olL8Uiq",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "April 2026",
+    "status": "active",
+    "createdAt": "2026-04-21T15:20:58.414Z"
+  },
+  {
+    "id": "e39d185a-1d81-4406-992a-1a97cf77e0ad",
+    "name": "john",
+    "email": "john@hardcompare.com",
+    "passwordHash": "$2a$10$ek6Nr9OfOh80D6as7nI98O0zsiBzmogmKEcxJhsucBoHEYHOCE2H6",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "April 2026",
+    "status": "active",
+    "createdAt": "2026-04-21T15:25:34.561Z"
+  },
+  {
+    "id": "bc140f35-f4b8-42be-ac4d-4c2197ec77c7",
+    "name": "Test User",
+    "email": "newuser99@test.com",
+    "passwordHash": "$2a$10$sYlg85mIrwwvhmlcxRftiu.2mtcG2Vn8qM/qyMrYYHoMrj7ZnmGwy",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "April 2026",
+    "status": "active",
+    "createdAt": "2026-04-21T15:27:48.595Z"
+  },
+  {
+    "id": "a72220aa-d6bc-44f3-a21e-8e7c4aa64e76",
+    "name": "Ion Popescu",
+    "email": "ion@test.com",
+    "passwordHash": "$2a$10$Nk.AVJGtLQKmW3S3W25z4OifJuyIG8q3JyzYOlST/qp8fuWeh6Bxu",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "April 2026",
+    "status": "active",
+    "createdAt": "2026-04-21T15:30:39.515Z"
+  },
+  {
+    "id": "fa808bdb-19cd-4ad3-aef7-d5b4d9e8b76a",
+    "name": "vasya",
+    "email": "vasya@example.com",
+    "passwordHash": "$2a$10$ze7f0pV4DNmaxkbaHRv9PuRCWM/eZ8mHQLtbvA91VP3ApJb6fppjC",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "\u043C\u0430\u0439 2026",
+    "status": "active",
+    "createdAt": "2026-05-18T06:33:26.7663649Z"
+  }
+]
