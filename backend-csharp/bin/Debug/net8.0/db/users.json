@@ -12,8 +12,8 @@
   },
   {
     "id": "10668cd2-77c9-4214-864c-9b4add92ca07",
-    "name": "Vasea Test",
-    "email": "vasea@test.com",
+    "name": "Iov Test",
+    "email": "iov@test.com",
     "passwordHash": "$2a$10$01Fv1g27NT74g4WecJCQieRZInNgnv36wl1J81lIocHrt6olL8Uiq",
     "role": "user",
     "plan": "Free",

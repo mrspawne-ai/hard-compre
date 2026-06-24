@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET") ?? "hardcompare-dev-secret-2026";
+var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET") ?? "hardcompare-dev-secret-2026-secure-key!!";
 var port = Environment.GetEnvironmentVariable("PORT") ?? "3001";
 var dbPath = Path.Combine(builder.Environment.ContentRootPath, "db");
 Directory.CreateDirectory(dbPath);

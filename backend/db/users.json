@@ -11,17 +11,6 @@
     "createdAt": "2026-04-21T15:10:07.909Z"
   },
   {
-    "id": "10668cd2-77c9-4214-864c-9b4add92ca07",
-    "name": "Vasea Test",
-    "email": "vasea@test.com",
-    "passwordHash": "$2a$10$01Fv1g27NT74g4WecJCQieRZInNgnv36wl1J81lIocHrt6olL8Uiq",
-    "role": "user",
-    "plan": "Free",
-    "joinDate": "April 2026",
-    "status": "active",
-    "createdAt": "2026-04-21T15:20:58.414Z"
-  },
-  {
     "id": "e39d185a-1d81-4406-992a-1a97cf77e0ad",
     "name": "john",
     "email": "john@hardcompare.com",
