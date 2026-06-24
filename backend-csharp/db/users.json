@@ -12,8 +12,8 @@
   },
   {
     "id": "10668cd2-77c9-4214-864c-9b4add92ca07",
-    "name": "Vasea Test",
-    "email": "vasea@test.com",
+    "name": "Iov Test",
+    "email": "iov@test.com",
     "passwordHash": "$2a$10$01Fv1g27NT74g4WecJCQieRZInNgnv36wl1J81lIocHrt6olL8Uiq",
     "role": "user",
     "plan": "Free",
@@ -97,5 +97,16 @@
     "joinDate": "\u0438\u044E\u043D\u044C 2026",
     "status": "active",
     "createdAt": "2026-06-14T07:47:59.5401207Z"
+  },
+  {
+    "id": "91444561-c565-4cc0-a82c-2a56f920f186",
+    "name": "ion",
+    "email": "1ion@example.com",
+    "passwordHash": "$2a$10$rxHihMjQjS5etGj/lwb54eVETJlJ6QZopBJo/OZVM6bSI34P7fdl.",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "\u0438\u044E\u043D\u044C 2026",
+    "status": "active",
+    "createdAt": "2026-06-24T09:56:28.3897685Z"
   }
 ]
