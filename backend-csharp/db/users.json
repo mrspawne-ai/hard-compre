@@ -64,5 +64,38 @@
     "joinDate": "\u043C\u0430\u0439 2026",
     "status": "active",
     "createdAt": "2026-05-18T06:33:26.7663649Z"
+  },
+  {
+    "id": "0bbb14fc-410f-4381-a70b-bbae25548ca2",
+    "name": "jnohn",
+    "email": "njohn@gmail.com",
+    "passwordHash": "$2a$10$g9IoaSsKB88g336KhO9uQ..Ks94oCLXUq99rXuhrDEFDLmZXOCnyu",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "\u0438\u044E\u043D\u044C 2026",
+    "status": "active",
+    "createdAt": "2026-06-14T07:14:10.7136617Z"
+  },
+  {
+    "id": "2432d7a3-284a-4000-9de4-867ee77ae8f4",
+    "name": "ion",
+    "email": "ion@example.com",
+    "passwordHash": "$2a$10$IG1o8rrAvRGJX4G0nU93Ze4HCWifQl9/qv1lzNXlJPetiw9btUPmO",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "\u0438\u044E\u043D\u044C 2026",
+    "status": "active",
+    "createdAt": "2026-06-14T07:36:39.7891727Z"
+  },
+  {
+    "id": "a8dee3b9-999d-4802-8d75-8bda4e60befb",
+    "name": "ion",
+    "email": "ion2@example.com",
+    "passwordHash": "$2a$10$lVAkq4Rnu27UTk.xogOSJuDMutKdz5bFkKwxk5yETO9ugUpF/PLoS",
+    "role": "user",
+    "plan": "Free",
+    "joinDate": "\u0438\u044E\u043D\u044C 2026",
+    "status": "active",
+    "createdAt": "2026-06-14T07:47:59.5401207Z"
   }
 ]

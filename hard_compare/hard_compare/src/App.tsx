@@ -53,8 +53,8 @@ function PageSkeleton() {
   return (
     <div className="min-h-screen flex items-center justify-center pt-24" role="status" aria-label="Loading">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-8 h-8 rounded-full border-2 border-apple-blue border-t-transparent animate-spin" />
-        <p className="text-sm text-apple-gray">Loading…</p>
+        <div className="w-6 h-6 border-2 border-apple-blue border-t-transparent animate-spin" />
+        <p className="text-[0.65rem] uppercase tracking-widest text-apple-gray">Loading…</p>
       </div>
     </div>
   );

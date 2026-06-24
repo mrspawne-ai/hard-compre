@@ -98,11 +98,12 @@ export interface StatsCard { label: string; value: string; change: string; posit
 
 // ─── Auth ────────────────────────────────────────────────────────────────────
 export interface User {
-  id: string;
+  id: number | string;
   name: string;
   email: string;
   role: 'user' | 'admin';
   plan: string;
-  joinDate: string;
+  joinDate?: string;
+  status?: string;
   savedComparisons?: string[][];
 }

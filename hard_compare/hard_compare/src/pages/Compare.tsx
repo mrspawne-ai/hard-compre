@@ -9,36 +9,22 @@ import {
   clearCompare, setCompareIds, MAX_COMPARE,
 } from '../lib/compareStore';
 
-// ─── Read share IDs from URL hash on first load ───────────────────────────────
 function getInitialIds(): string[] {
   const hash = window.location.hash;
   const qIndex = hash.indexOf('?');
   if (qIndex !== -1) {
     const params = new URLSearchParams(hash.slice(qIndex + 1));
     const ids = (params.get('ids') ?? '').split(',').filter(Boolean);
-    if (ids.length > 0) {
-      setCompareIds(ids);
-      return ids.slice(0, MAX_COMPARE);
-    }
+    if (ids.length > 0) { setCompareIds(ids); return ids.slice(0, MAX_COMPARE); }
   }
   return getSelectedIds();
 }
 
-// ─── Model picker ─────────────────────────────────────────────────────────────
-function ModelPicker({
-  onSelect,
-  selectedIds,
-}: {
-  onSelect: (id: string) => void;
-  selectedIds: string[];
-}) {
+function ModelPicker({ onSelect, selectedIds }: { onSelect: (id: string) => void; selectedIds: string[] }) {
   const [query, setQuery] = useState('');
-
   const results = query.trim().length < 1
     ? ALL_MODELS
-    : ALL_MODELS.filter(m =>
-        `${m.name} ${m.brand} ${m.cpu} ${m.gpu}`.toLowerCase().includes(query.toLowerCase())
-      );
+    : ALL_MODELS.filter(m => `${m.name} ${m.brand} ${m.cpu} ${m.gpu}`.toLowerCase().includes(query.toLowerCase()));
 
   return (
     <div className="flex flex-col gap-3">
@@ -48,9 +34,9 @@ function ModelPicker({
         onChange={e => setQuery(e.target.value)}
         placeholder="Search models…"
         aria-label="Search hardware models"
-        className="w-full px-4 py-3 rounded-2xl liquid-glass text-sm text-apple-dark dark:text-apple-light placeholder:text-apple-gray outline-none focus:ring-2 focus:ring-apple-blue/50"
+        className="w-full px-3 py-2.5 liquid-glass text-xs text-apple-dark dark:text-apple-light placeholder:text-apple-gray/60 outline-none focus:border-apple-blue transition-colors duration-150 uppercase tracking-wide"
       />
-      <div className="max-h-72 overflow-y-auto space-y-1 pr-1">
+      <div className="max-h-64 overflow-y-auto flex flex-col divide-y divide-black/5 dark:divide-white/5">
         {results.map(m => {
           const isIn = selectedIds.includes(m.id);
           const full = selectedIds.length >= MAX_COMPARE && !isIn;
@@ -60,42 +46,42 @@ function ModelPicker({
               onClick={() => !full && onSelect(m.id)}
               disabled={full}
               aria-pressed={isIn}
-              className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-150 ${
+              className={`flex items-center gap-3 px-3 py-2.5 text-left transition-colors duration-150 ${
                 isIn
-                  ? 'bg-apple-blue/10 text-apple-blue'
+                  ? 'bg-apple-blue/8 text-apple-blue'
                   : full
-                  ? 'opacity-40 cursor-not-allowed text-apple-gray'
-                  : 'hover:bg-apple-blue/6 text-apple-dark dark:text-apple-light'
+                  ? 'opacity-35 cursor-not-allowed text-apple-gray'
+                  : 'hover:bg-apple-blue/5 text-apple-dark dark:text-apple-light'
               }`}
             >
-              <span className={`w-10 h-10 rounded-xl bg-gradient-to-br ${m.gradient} flex items-center justify-center text-xl shrink-0`} aria-hidden="true">
-                {m.icon}
+              <span
+                className="ascii-icon w-10 h-7 shrink-0 text-[0.55rem]"
+                style={{ color: isIn ? '#0066ff' : '#888', borderColor: isIn ? '#0066ff' : '#888' }}
+                aria-hidden="true"
+              >
+                {(m.subtype ?? m.type ?? 'DEV').slice(0, 3).toUpperCase()}
               </span>
-              <div className="min-w-0">
-                <p className="text-sm font-medium truncate">{m.name}</p>
-                <p className="text-xs text-apple-gray dark:text-apple-mid-gray">{m.brand} · {m.priceLabel}</p>
+              <div className="min-w-0 flex-1">
+                <p className="text-[0.75rem] font-bold uppercase tracking-wide truncate">{m.name}</p>
+                <p className="text-[0.6rem] text-apple-gray dark:text-apple-mid-gray uppercase tracking-wide">{m.brand} · {m.priceLabel}</p>
               </div>
-              {isIn && (
-                <span className="ml-auto text-xs font-semibold text-apple-blue shrink-0">✓ Added</span>
-              )}
+              {isIn && <span className="text-[0.6rem] font-black text-apple-blue shrink-0 uppercase tracking-wide">✓ In</span>}
             </button>
           );
         })}
         {results.length === 0 && (
-          <p className="text-sm text-apple-gray text-center py-6">No results for "{query}"</p>
+          <p className="text-[0.7rem] text-apple-gray text-center py-6 uppercase tracking-widest">No results for "{query}"</p>
         )}
       </div>
     </div>
   );
 }
 
-// ─── Compare Page ─────────────────────────────────────────────────────────────
 export default function Compare() {
   const [selectedIds, setSelectedIds] = useState<string[]>(() => getInitialIds());
   const [showPicker, setShowPicker] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  // Sync with compareStore events (from other pages)
   useEffect(() => {
     const handler = () => setSelectedIds(getSelectedIds());
     window.addEventListener('comparechange', handler);
@@ -107,15 +93,8 @@ export default function Compare() {
     .filter((m): m is ComputerModel => m !== undefined);
 
   const handleSelect = (id: string) => {
-    if (selectedIds.includes(id)) {
-      removeFromCompare(id);
-    } else {
-      addToCompare(id);
-    }
-  };
-
-  const handleRemove = (id: string) => {
-    removeFromCompare(id);
+    if (selectedIds.includes(id)) removeFromCompare(id);
+    else addToCompare(id);
   };
 
   const handleShare = async () => {
@@ -130,39 +109,39 @@ export default function Compare() {
   };
 
   return (
-    <div className="pt-20 pb-28">
+    <div className="pt-12 pb-24">
+
       {/* Header */}
-      <section className="section-container py-16">
-        <p className="text-sm font-semibold text-apple-blue uppercase tracking-widest mb-4">Compare Tool</p>
-        <h1 className="headline-xl text-gradient mb-4">Side by side.</h1>
+      <section className="section-container py-10 border-b border-black/8 dark:border-white/5">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="label-chip text-apple-blue border-apple-blue">Compare Tool</span>
+        </div>
+        <h1 className="headline-xl text-gradient mb-3">Side by side.</h1>
         <p className="body-lg max-w-xl">
           Select 2–{MAX_COMPARE} models to compare every spec, score and price in one view.
         </p>
       </section>
 
       {/* Selection bar */}
-      <section className="section-container mb-8">
-        <GlassCard padding="md" radius="2xl" className="flex flex-wrap items-center gap-4">
-          {/* Selected chips */}
+      <section className="section-container mt-6 mb-6">
+        <GlassCard padding="md" className="flex flex-wrap items-center gap-3">
+          {/* Chips */}
           <div className="flex flex-wrap gap-2 flex-1 min-w-0">
             {models.map(m => (
-              <div
-                key={m.id}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full liquid-glass text-sm"
-              >
-                <span aria-hidden="true">{m.icon}</span>
-                <span className="font-medium text-apple-dark dark:text-apple-light max-w-[140px] truncate">{m.name}</span>
+              <div key={m.id} className="flex items-center gap-1.5 px-2.5 py-1 border border-black/15 dark:border-white/10 text-[0.65rem] font-bold uppercase tracking-wide text-apple-dark dark:text-apple-light">
+                <span aria-hidden="true" className="text-apple-blue">[{(m.subtype ?? 'DEV').slice(0, 3).toUpperCase()}]</span>
+                <span className="max-w-[100px] truncate">{m.name}</span>
                 <button
-                  onClick={() => handleRemove(m.id)}
+                  onClick={() => removeFromCompare(m.id)}
                   aria-label={`Remove ${m.name}`}
-                  className="w-4 h-4 rounded-full bg-black/10 dark:bg-white/10 flex items-center justify-center text-[10px] hover:bg-apple-red/20 hover:text-apple-red transition-colors"
+                  className="w-4 h-4 flex items-center justify-center text-apple-gray hover:text-apple-red transition-colors text-xs ml-0.5"
                 >
                   ×
                 </button>
               </div>
             ))}
             {models.length === 0 && (
-              <p className="text-sm text-apple-gray dark:text-apple-mid-gray">No models selected yet</p>
+              <p className="text-[0.7rem] text-apple-gray dark:text-apple-mid-gray uppercase tracking-widest">No models selected</p>
             )}
           </div>
 
@@ -172,67 +151,63 @@ export default function Compare() {
               <button
                 onClick={handleShare}
                 aria-label="Copy share link"
-                className="text-xs font-medium px-3 py-1.5 rounded-xl liquid-glass text-apple-blue hover:bg-apple-blue/8 transition-colors"
+                className="text-[0.6rem] font-bold uppercase tracking-widest px-2.5 py-1.5 border border-apple-blue text-apple-blue hover:bg-apple-blue hover:text-white transition-all duration-150"
               >
-                {copied ? '✓ Copied!' : 'Share link'}
+                {copied ? '✓ Copied' : 'Share'}
               </button>
             )}
             {models.length > 0 && (
               <button
                 onClick={() => clearCompare()}
-                className="text-xs text-apple-gray hover:text-apple-red transition-colors font-medium"
+                className="text-[0.6rem] font-bold uppercase tracking-widest text-apple-gray hover:text-apple-red transition-colors"
               >
-                Clear all
+                Clear
               </button>
             )}
             <button
               onClick={() => setShowPicker(p => !p)}
               disabled={selectedIds.length >= MAX_COMPARE}
-              className="btn-primary !py-2 !text-xs disabled:opacity-50"
+              className="btn-primary !py-1.5 !text-[0.6rem] disabled:opacity-40"
             >
-              {showPicker ? 'Close' : `+ Add model (${selectedIds.length}/${MAX_COMPARE})`}
+              {showPicker ? '× Close' : `+ Add (${selectedIds.length}/${MAX_COMPARE})`}
             </button>
           </div>
         </GlassCard>
 
-        {/* Picker dropdown */}
         {showPicker && (
-          <div className="mt-3">
-            <GlassCard padding="md" radius="2xl">
+          <div className="mt-2">
+            <GlassCard padding="md">
               <ModelPicker onSelect={handleSelect} selectedIds={selectedIds} />
             </GlassCard>
           </div>
         )}
       </section>
 
-      {/* Comparison content */}
+      {/* Content */}
       <section className="section-container">
         {models.length >= 2 ? (
-          <div className="flex flex-col gap-8">
-            {/* Radar chart */}
-            <GlassCard padding="lg" radius="3xl">
-              <h2 className="text-sm font-semibold text-apple-gray uppercase tracking-widest mb-6 text-center">
-                Score Overview
-              </h2>
+          <div className="flex flex-col gap-6">
+            <GlassCard padding="lg">
+              <div className="flex items-center gap-2 mb-5">
+                <span className="label-chip text-apple-gray border-apple-gray">Score Overview</span>
+              </div>
               <RadarChart models={models} />
             </GlassCard>
 
-            {/* Spec table */}
-            <CompareTable models={models} onRemove={handleRemove} />
+            <CompareTable models={models} onRemove={removeFromCompare} />
           </div>
         ) : (
-          <GlassCard padding="xl" radius="3xl" className="text-center">
-            <p className="text-5xl mb-4" aria-hidden="true">📊</p>
-            <h2 className="text-xl font-bold text-apple-dark dark:text-apple-light mb-2">
-              Select at least 2 models
+          <GlassCard padding="xl" className="text-center">
+            <div className="ascii-icon w-14 h-10 text-[0.8rem] text-apple-gray border-apple-gray mx-auto mb-5">
+              CMP
+            </div>
+            <h2 className="headline-md text-apple-dark dark:text-apple-light mb-3">
+              Select 2+ models
             </h2>
-            <p className="body-lg mb-6">
-              Use the picker above or browse Laptops / Desktops pages and click "+ Add to Compare".
+            <p className="body-lg mb-6 max-w-sm mx-auto">
+              Use the picker above or browse Laptops/Desktops and click "+ Add to Compare".
             </p>
-            <button
-              onClick={() => setShowPicker(true)}
-              className="btn-primary"
-            >
+            <button onClick={() => setShowPicker(true)} className="btn-primary">
               + Add model
             </button>
           </GlassCard>

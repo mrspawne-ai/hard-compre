@@ -1,7 +1,7 @@
 import type { ComputerModel } from '../types';
 
-const COLORS = ['#0071e3', '#5856d6', '#a855f7', '#14b8a6'];
-const FILL_OPACITY = 0.12;
+const COLORS = ['#0066ff', '#00e87d', '#ff6600', '#ff2244'];
+const FILL_OPACITY = 0.07;
 const AXES = [
   { label: 'Performance', key: 'performanceScore' as keyof ComputerModel },
   { label: 'Efficiency',  key: 'efficiencyScore'  as keyof ComputerModel },
@@ -61,8 +61,8 @@ export default function RadarChart({ models }: RadarChartProps) {
             points={gridPolygon(pct)}
             fill="none"
             stroke="currentColor"
-            strokeOpacity={0.1}
-            strokeWidth={1}
+            strokeOpacity={0.18}
+            strokeWidth={0.8}
             className="text-apple-gray"
           />
         ))}
@@ -164,11 +164,11 @@ export default function RadarChart({ models }: RadarChartProps) {
         {models.map((m, idx) => (
           <div key={m.id} className="flex items-center gap-1.5">
             <span
-              className="w-3 h-3 rounded-full shrink-0"
+              className="w-3 h-2 shrink-0"
               style={{ backgroundColor: COLORS[idx % COLORS.length] }}
               aria-hidden="true"
             />
-            <span className="text-xs text-apple-gray dark:text-apple-mid-gray truncate max-w-[120px]">
+            <span className="text-[0.6rem] font-bold uppercase tracking-wide text-apple-gray dark:text-apple-mid-gray truncate max-w-[120px]">
               {m.name}
             </span>
           </div>
