@@ -1,0 +1,17 @@
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\bin\Debug\net8.0\HardCompare.DataAccessLayer.deps.json
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\bin\Debug\net8.0\HardCompare.DataAccessLayer.runtimeconfig.json
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\bin\Debug\net8.0\HardCompare.DataAccessLayer.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\bin\Debug\net8.0\HardCompare.DataAccessLayer.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\bin\Debug\net8.0\HardCompare.Domain.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\bin\Debug\net8.0\HardCompare.Domain.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.AssemblyInfoInputs.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.AssemblyInfo.cs
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardComp.FA9798F6.Up2Date
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\refint\HardCompare.DataAccessLayer.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\HardCompare.DataAccessLayer.genruntimeconfig.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.DataAccessLayer\obj\Debug\net8.0\ref\HardCompare.DataAccessLayer.dll

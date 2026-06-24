@@ -1,7 +1,3 @@
-
-// ─── GlassCard ────────────────────────────────────────────────────────────────
-// Reusable Liquid Glass card component with Apple-style styling.
-
 interface GlassCardProps {
   children: React.ReactNode;
   className?: string;
@@ -17,16 +13,10 @@ interface GlassCardProps {
 
 const paddingMap = {
   none: '',
-  sm:   'p-4',
-  md:   'p-6',
-  lg:   'p-8',
-  xl:   'p-10',
-};
-
-const radiusMap = {
-  xl:   'rounded-xl',
-  '2xl': 'rounded-2xl',
-  '3xl': 'rounded-3xl',
+  sm:   'p-3',
+  md:   'p-4',
+  lg:   'p-5',
+  xl:   'p-6',
 };
 
 const strengthMap = {
@@ -40,7 +30,6 @@ export default function GlassCard({
   className = '',
   hover = false,
   padding = 'lg',
-  radius = '2xl',
   strength = 'default',
   onClick,
   as: Tag = 'div',
@@ -49,11 +38,10 @@ export default function GlassCard({
 }: GlassCardProps) {
   const classes = [
     strengthMap[strength],
-    radiusMap[radius],
     paddingMap[padding],
     hover ? 'card-hover cursor-pointer' : '',
     glow ? 'glow-blue' : '',
-    'transition-all duration-350',
+    'transition-all duration-150',
     className,
   ]
     .filter(Boolean)

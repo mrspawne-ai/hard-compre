@@ -1,0 +1,17 @@
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardCompare.BusinessLayer.csproj.AssemblyReference.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardCompare.BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardCompare.BusinessLayer.AssemblyInfoInputs.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardCompare.BusinessLayer.AssemblyInfo.cs
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardCompare.BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\bin\Debug\net8.0\HardCompare.BusinessLayer.deps.json
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\bin\Debug\net8.0\HardCompare.BusinessLayer.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\bin\Debug\net8.0\HardCompare.BusinessLayer.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\bin\Debug\net8.0\HardCompare.DataAccessLayer.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\bin\Debug\net8.0\HardCompare.Domain.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\bin\Debug\net8.0\HardCompare.Domain.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\bin\Debug\net8.0\HardCompare.DataAccessLayer.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardComp.3DF064CB.Up2Date
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardCompare.BusinessLayer.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\refint\HardCompare.BusinessLayer.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\HardCompare.BusinessLayer.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.BusinessLayer\obj\Debug\net8.0\ref\HardCompare.BusinessLayer.dll

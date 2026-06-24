@@ -30,7 +30,10 @@
       "PowerShell(& \"C:\\\\Program Files\\\\dotnet\\\\dotnet.exe\" --list-sdks; & \"C:\\\\Program Files\\\\dotnet\\\\dotnet.exe\" --list-runtimes)",
       "Bash(cp /c/Users/vasea/Desktop/hard_compare/backend/db/users.json /c/Users/vasea/Desktop/hard_compare/backend-csharp/db/users.json)",
       "Bash(cp /c/Users/vasea/Desktop/hard_compare/backend/db/contacts.json /c/Users/vasea/Desktop/hard_compare/backend-csharp/db/contacts.json)",
-      "PowerShell(dotnet build *)"
+      "PowerShell(dotnet build *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\vasea\\\\Desktop\\\\old windows\\\\Diffy\\\\Diffy-comparare-jocuri\\\\Diffy.Api\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\vasea\\\\Desktop\\\\old windows\\\\Diffy\\\\Diffy-comparare-jocuri\\\\Diffy.Domain\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\vasea\\\\Desktop\\\\hard_compare\\\\backend-csharp\" -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object FullName | Format-Table -AutoSize)"
     ]
   }
 }

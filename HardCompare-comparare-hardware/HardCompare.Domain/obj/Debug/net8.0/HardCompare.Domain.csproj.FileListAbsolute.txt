@@ -1,0 +1,11 @@
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\bin\Debug\net8.0\HardCompare.Domain.deps.json
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\bin\Debug\net8.0\HardCompare.Domain.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\bin\Debug\net8.0\HardCompare.Domain.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\HardCompare.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\HardCompare.Domain.AssemblyInfoInputs.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\HardCompare.Domain.AssemblyInfo.cs
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\HardCompare.Domain.csproj.CoreCompileInputs.cache
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\HardCompare.Domain.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\refint\HardCompare.Domain.dll
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\HardCompare.Domain.pdb
+C:\Users\vasea\Desktop\hard_compare\HardCompare-comparare-hardware\HardCompare.Domain\obj\Debug\net8.0\ref\HardCompare.Domain.dll

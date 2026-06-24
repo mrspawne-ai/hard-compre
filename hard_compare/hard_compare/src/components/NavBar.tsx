@@ -3,7 +3,6 @@ import { useScrollEffect } from '../hooks/useScrollEffect';
 import { getSelectedIds } from '../lib/compareStore';
 import type { NavigateFn, RouteKey } from '../types';
 
-// ─── Nav links ────────────────────────────────────────────────────────────────
 interface NavLinkDef {
   label: string;
   route: RouteKey;
@@ -20,50 +19,47 @@ const NAV_LINKS: NavLinkDef[] = [
   { label: 'Guides',       route: 'guides' },
 ];
 
-// ─── HardCompare Logo ─────────────────────────────────────────────────────────
 function Logo({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
       aria-label="HardCompare Home"
-      className="flex items-center gap-2 hover:opacity-80 transition-opacity duration-200 focus-visible:ring-2 focus-visible:ring-apple-blue rounded-lg px-1"
+      className="flex items-center gap-2 hover:opacity-70 transition-opacity duration-150 focus-visible:outline focus-visible:outline-apple-blue"
     >
       <span
-        className="w-7 h-7 rounded-lg bg-gradient-to-br from-apple-blue to-apple-indigo flex items-center justify-center text-white text-sm font-bold shadow-sm shadow-apple-blue/30"
+        className="w-7 h-5 border border-current flex items-center justify-center text-[9px] font-black tracking-widest text-apple-blue"
         aria-hidden="true"
       >
-        ⌥
+        HC
       </span>
-      <span className="font-bold text-[15px] tracking-tight text-apple-dark dark:text-apple-light hidden sm:inline">
+      <span className="font-black text-[13px] tracking-tight text-apple-dark dark:text-apple-light hidden sm:inline uppercase">
         Hard<span className="text-apple-blue">Compare</span>
       </span>
     </button>
   );
 }
 
-// ─── Theme Toggle ─────────────────────────────────────────────────────────────
 function ThemeToggle({ isDark, onToggle }: { isDark: boolean; onToggle: () => void }) {
   return (
     <button
       onClick={onToggle}
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className="w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 hover:bg-black/5 dark:hover:bg-white/10 focus-visible:ring-2 focus-visible:ring-apple-blue"
+      className="w-8 h-8 flex items-center justify-center transition-all duration-150 hover:text-apple-blue border border-transparent hover:border-current focus-visible:outline focus-visible:outline-apple-blue"
     >
       {isDark ? (
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
           <circle cx="12" cy="12" r="5" />
-          <path strokeLinecap="round" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+          <path strokeLinecap="square" d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
         </svg>
       ) : (
-        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+          <path strokeLinecap="square" strokeLinejoin="miter" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
         </svg>
       )}
     </button>
   );
 }
 
-// ─── NavBar ───────────────────────────────────────────────────────────────────
 interface NavBarProps {
   isDark: boolean;
   toggleTheme: () => void;
@@ -77,14 +73,12 @@ export default function NavBar({ isDark, toggleTheme, navigate, currentRoute }: 
   const [compareCount, setCompareCount] = useState(() => getSelectedIds().length);
   const [isLoggedIn, setIsLoggedIn] = useState(() => !!localStorage.getItem('liquidOS-auth'));
 
-  // Keep compare badge in sync with compareStore events
   useEffect(() => {
     const handler = () => setCompareCount(getSelectedIds().length);
     window.addEventListener('comparechange', handler);
     return () => window.removeEventListener('comparechange', handler);
   }, []);
 
-  // Keep auth state in sync with localStorage changes
   useEffect(() => {
     const handler = () => setIsLoggedIn(!!localStorage.getItem('liquidOS-auth'));
     window.addEventListener('storage', handler);
@@ -101,37 +95,33 @@ export default function NavBar({ isDark, toggleTheme, navigate, currentRoute }: 
       {/* ── Desktop NavBar ── */}
       <header
         role="banner"
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-          scrolled
-            ? 'liquid-glass-nav shadow-sm shadow-black/5 dark:shadow-black/20'
-            : 'bg-transparent border-b border-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+          scrolled ? 'liquid-glass-nav' : 'bg-transparent border-b border-transparent'
         }`}
-        style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
         <nav
           aria-label="Main navigation"
-          className="section-container flex items-center justify-between h-14"
+          className="section-container flex items-center justify-between h-12"
         >
-          {/* Logo */}
           <Logo onClick={() => handleNav('home')} />
 
-          {/* Center links — desktop */}
-          <ul className="hidden lg:flex items-center gap-0.5" role="list">
+          {/* Center links */}
+          <ul className="hidden lg:flex items-center" role="list">
             {NAV_LINKS.map(({ label, route, highlight }) => (
               <li key={route}>
                 {highlight ? (
                   <button
                     onClick={() => handleNav(route)}
-                    className={`relative flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold transition-all duration-200 ${
+                    className={`relative flex items-center gap-1.5 px-3 py-1 text-[0.6rem] font-bold tracking-widest uppercase border transition-all duration-150 ${
                       currentRoute === route
-                        ? 'bg-apple-blue text-white'
-                        : 'bg-apple-blue/10 text-apple-blue hover:bg-apple-blue hover:text-white'
+                        ? 'bg-apple-blue text-white border-apple-blue'
+                        : 'text-apple-blue border-apple-blue hover:bg-apple-blue hover:text-white'
                     }`}
                     aria-current={currentRoute === route ? 'page' : undefined}
                   >
                     {label}
                     {compareCount > 0 && (
-                      <span className="w-4 h-4 rounded-full bg-white/30 text-[10px] font-bold flex items-center justify-center leading-none">
+                      <span className="w-4 h-4 border border-current text-[9px] font-bold flex items-center justify-center leading-none">
                         {compareCount}
                       </span>
                     )}
@@ -139,7 +129,7 @@ export default function NavBar({ isDark, toggleTheme, navigate, currentRoute }: 
                 ) : (
                   <button
                     onClick={() => handleNav(route)}
-                    className={`nav-link ${currentRoute === route ? 'font-medium !text-apple-dark dark:!text-apple-light' : ''}`}
+                    className={`nav-link ${currentRoute === route ? '!text-apple-dark dark:!text-apple-light font-bold' : ''}`}
                     aria-current={currentRoute === route ? 'page' : undefined}
                   >
                     {label}
@@ -153,160 +143,125 @@ export default function NavBar({ isDark, toggleTheme, navigate, currentRoute }: 
           <div className="flex items-center gap-1">
             <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
 
-            {/* Upgrade subtle link */}
             <button
               onClick={() => handleNav('upgrade')}
               aria-label="View upgrade plans"
-              className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-full text-xs font-medium text-apple-indigo hover:bg-apple-indigo/8 transition-all duration-200 ml-0.5"
+              className="hidden sm:flex items-center gap-1 px-2 py-1 text-[0.58rem] font-bold tracking-widest uppercase text-apple-orange hover:text-apple-dark dark:hover:text-apple-light transition-colors duration-150 ml-1"
             >
-              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-              Upgrade
+              + Pro
             </button>
 
-            {/* Sign In / Account button */}
             {isLoggedIn ? (
               <button
                 onClick={() => handleNav('dashboard')}
                 aria-label="Open dashboard"
-                className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium liquid-glass hover:scale-[1.02] transition-all duration-200 text-apple-dark dark:text-apple-light ml-1"
+                className="hidden sm:flex items-center gap-1 px-2.5 py-1 text-[0.6rem] font-bold tracking-widest uppercase border border-current text-apple-dark dark:text-apple-light hover:border-apple-blue hover:text-apple-blue transition-colors duration-150 ml-1"
               >
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
                 Account
               </button>
             ) : (
               <button
                 id="navbar-signin-btn"
                 onClick={() => handleNav('signin')}
-                aria-label="Sign in to your account"
-                className="hidden sm:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold btn-primary !text-[12px] !py-1.5 !px-3.5 ml-1"
+                aria-label="Sign in"
+                className="hidden sm:flex btn-primary !text-[0.6rem] !px-3 !py-1 ml-1"
               >
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
-                </svg>
                 Sign In
               </button>
             )}
 
             {/* Hamburger — mobile */}
             <button
-              className="lg:hidden flex flex-col justify-center items-center w-9 h-9 gap-1.5 rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+              className="lg:hidden flex flex-col justify-center items-center w-8 h-8 gap-1 hover:text-apple-blue transition-colors"
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
             >
-              <span className="w-5 h-px bg-apple-dark dark:bg-apple-light" />
-              <span className="w-5 h-px bg-apple-dark dark:bg-apple-light" />
+              <span className="w-5 h-px bg-current" />
+              <span className="w-5 h-px bg-current" />
+              <span className="w-3 h-px bg-current" />
             </button>
           </div>
         </nav>
       </header>
 
-      {/* ── Mobile full-screen overlay ── */}
+      {/* ── Mobile overlay ── */}
       <div
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
         aria-label="Navigation menu"
-        className={`fixed inset-0 z-[100] lg:hidden transition-all duration-500 ${
+        className={`fixed inset-0 z-[100] lg:hidden transition-opacity duration-200 ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
-        style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
       >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 liquid-glass-heavy"
-          onClick={() => setMobileOpen(false)}
-        />
+        <div className="absolute inset-0 liquid-glass-heavy" onClick={() => setMobileOpen(false)} />
 
-        {/* Menu panel */}
         <div
-          className={`absolute inset-x-4 top-4 bottom-4 liquid-glass-heavy rounded-3xl p-8 flex flex-col transition-all duration-500 ${
-            mobileOpen ? 'scale-100 translate-y-0' : 'scale-95 -translate-y-4'
+          className={`absolute inset-x-3 top-3 bottom-3 liquid-glass-heavy p-6 flex flex-col transition-transform duration-200 ${
+            mobileOpen ? 'translate-y-0' : '-translate-y-3'
           }`}
-          style={{ transitionTimingFunction: 'cubic-bezier(0.16, 1, 0.3, 1)' }}
         >
           {/* Header */}
-          <div className="flex items-center justify-between mb-10">
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-black/10 dark:border-white/10">
             <div className="flex items-center gap-2">
-              <span className="w-7 h-7 rounded-lg bg-gradient-to-br from-apple-blue to-apple-indigo flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">⌥</span>
-              <span className="font-bold text-[15px] tracking-tight text-apple-dark dark:text-apple-light">
+              <span className="w-8 h-5 border border-apple-blue flex items-center justify-center text-[9px] font-black tracking-widest text-apple-blue" aria-hidden="true">HC</span>
+              <span className="font-black text-[13px] tracking-tight uppercase text-apple-dark dark:text-apple-light">
                 Hard<span className="text-apple-blue">Compare</span>
               </span>
             </div>
             <button
               onClick={() => setMobileOpen(false)}
               aria-label="Close menu"
-              className="w-8 h-8 rounded-full liquid-glass flex items-center justify-center hover:scale-110 transition-transform"
+              className="w-8 h-8 border border-current flex items-center justify-center hover:text-apple-blue hover:border-apple-blue transition-colors duration-150 text-xl leading-none"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              ×
             </button>
           </div>
 
           {/* Links */}
           <nav aria-label="Mobile navigation">
-            <ul className="flex flex-col gap-1" role="list">
-              {NAV_LINKS.map(({ label, route, highlight }, i) => (
-                <li key={route} style={{ animationDelay: `${i * 0.05}s` }}>
+            <ul className="flex flex-col divide-y divide-black/8 dark:divide-white/8" role="list">
+              {NAV_LINKS.map(({ label, route, highlight }) => (
+                <li key={route}>
                   <button
                     onClick={() => handleNav(route)}
-                    className={`w-full text-left px-4 py-4 rounded-2xl text-2xl font-semibold tracking-tight transition-all duration-200 flex items-center gap-3 ${
+                    className={`w-full text-left px-2 py-3.5 text-sm font-bold tracking-wider uppercase flex items-center justify-between transition-colors duration-150 ${
                       currentRoute === route
-                        ? 'text-apple-blue bg-apple-blue/8'
+                        ? 'text-apple-blue'
                         : highlight
-                        ? 'text-apple-blue hover:bg-apple-blue/10'
-                        : 'text-apple-dark dark:text-apple-light hover:bg-apple-blue/10 hover:text-apple-blue'
+                        ? 'text-apple-blue'
+                        : 'text-apple-dark dark:text-apple-light hover:text-apple-blue'
                     }`}
                     aria-current={currentRoute === route ? 'page' : undefined}
                   >
                     {label}
-                    {highlight && compareCount > 0 && (
-                      <span className="w-6 h-6 rounded-full bg-apple-blue text-white text-sm font-bold flex items-center justify-center">
-                        {compareCount}
-                      </span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {highlight && compareCount > 0 && (
+                        <span className="w-5 h-5 border border-apple-blue text-apple-blue text-[10px] font-bold flex items-center justify-center">
+                          {compareCount}
+                        </span>
+                      )}
+                      <span className="text-apple-gray dark:text-apple-mid-gray text-xs">→</span>
+                    </div>
                   </button>
                 </li>
               ))}
             </ul>
           </nav>
 
-          {/* Bottom controls */}
-          <div className="mt-auto flex flex-col gap-3 pt-6 border-t border-black/10 dark:border-white/10">
-            <div className="flex items-center justify-between">
-              {isLoggedIn ? (
-                <button
-                  onClick={() => handleNav('dashboard')}
-                  className="btn-primary !py-2.5 !px-6 !text-sm"
-                >
-                  Account
-                </button>
-              ) : (
-                <button
-                  id="mobile-signin-btn"
-                  onClick={() => handleNav('signin')}
-                  className="btn-primary !py-2.5 !px-6 !text-sm"
-                >
-                  Sign In
-                </button>
-              )}
-              <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
-            </div>
-            <button
-              onClick={() => handleNav('upgrade')}
-              className="w-full py-2.5 rounded-2xl liquid-glass text-xs font-semibold text-apple-indigo flex items-center justify-center gap-2"
-            >
-              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-              </svg>
-              View Plans & Upgrade
-            </button>
+          <div className="mt-auto flex items-center justify-between pt-5 border-t border-black/10 dark:border-white/10">
+            {isLoggedIn ? (
+              <button onClick={() => handleNav('dashboard')} className="btn-primary !text-[0.65rem] !px-4 !py-2">
+                Account
+              </button>
+            ) : (
+              <button id="mobile-signin-btn" onClick={() => handleNav('signin')} className="btn-primary !text-[0.65rem] !px-4 !py-2">
+                Sign In
+              </button>
+            )}
+            <ThemeToggle isDark={isDark} onToggle={toggleTheme} />
           </div>
         </div>
       </div>

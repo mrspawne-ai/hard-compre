@@ -1,29 +1,26 @@
 import type { ComputerModel, SpecRow } from '../types';
 
-// ─── Spec rows definition ─────────────────────────────────────────────────────
 const SPEC_ROWS: SpecRow[] = [
-  { key: 'price',            label: 'Price',             unit: '$',    higherIsBetter: false, format: 'currency' },
-  { key: 'cpu',              label: 'Processor',         unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'ram',              label: 'Memory',            unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'gpu',              label: 'Graphics',          unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'storage',          label: 'Storage',           unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'display',          label: 'Display',           unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'battery',          label: 'Battery',           unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'weight',           label: 'Weight',            unit: '',     higherIsBetter: false, format: 'text' },
-  { key: 'performanceScore', label: 'Performance Score', unit: '/100', higherIsBetter: true,  format: 'score' },
-  { key: 'efficiencyScore',  label: 'Efficiency Score',  unit: '/100', higherIsBetter: true,  format: 'score' },
-  { key: 'valueScore',       label: 'Value Score',       unit: '/100', higherIsBetter: true,  format: 'score' },
-  { key: 'batteryScore',     label: 'Battery Score',     unit: '/100', higherIsBetter: true,  format: 'score' },
-  { key: 'ports',            label: 'Ports',             unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'os',               label: 'Operating System',  unit: '',     higherIsBetter: true,  format: 'text' },
-  { key: 'releaseYear',      label: 'Release Year',      unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'price',            label: 'Price',       unit: '$',    higherIsBetter: false, format: 'currency' },
+  { key: 'cpu',              label: 'Processor',   unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'ram',              label: 'Memory',      unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'gpu',              label: 'Graphics',    unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'storage',          label: 'Storage',     unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'display',          label: 'Display',     unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'battery',          label: 'Battery',     unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'weight',           label: 'Weight',      unit: '',     higherIsBetter: false, format: 'text' },
+  { key: 'performanceScore', label: 'Perf Score',  unit: '/100', higherIsBetter: true,  format: 'score' },
+  { key: 'efficiencyScore',  label: 'Eff Score',   unit: '/100', higherIsBetter: true,  format: 'score' },
+  { key: 'valueScore',       label: 'Value Score', unit: '/100', higherIsBetter: true,  format: 'score' },
+  { key: 'batteryScore',     label: 'Batt Score',  unit: '/100', higherIsBetter: true,  format: 'score' },
+  { key: 'ports',            label: 'Ports',       unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'os',               label: 'OS',          unit: '',     higherIsBetter: true,  format: 'text' },
+  { key: 'releaseYear',      label: 'Year',        unit: '',     higherIsBetter: true,  format: 'text' },
 ];
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 function getNumericValue(model: ComputerModel, key: string): number | null {
   const v = (model as unknown as Record<string, unknown>)[key];
-  if (typeof v === 'number') return v;
-  return null;
+  return typeof v === 'number' ? v : null;
 }
 
 function getBestIndex(models: ComputerModel[], key: string, higherIsBetter: boolean): number {
@@ -45,82 +42,74 @@ function formatValue(model: ComputerModel, row: SpecRow): string {
   return String(v);
 }
 
-// ─── Score Bar ────────────────────────────────────────────────────────────────
-function ScoreBar({ value, max = 100, color }: { value: number; max?: number; color: string }) {
-  const pct = Math.min(100, Math.round((value / max) * 100));
+const ACCENT_COLORS = ['#0066ff', '#00e87d', '#ff6600', '#ff2244'];
+
+function ScoreBar({ value, color }: { value: number; color: string }) {
+  const pct = Math.min(100, Math.round(value));
   return (
-    <div className="mt-1 h-1.5 rounded-full bg-black/8 dark:bg-white/10 overflow-hidden w-full">
-      <div
-        className={`h-full rounded-full ${color} transition-all duration-700`}
-        style={{ width: `${pct}%` }}
-        role="presentation"
-      />
+    <div className="mt-1 h-1.5 bg-black/8 dark:bg-white/8 overflow-hidden w-full">
+      <div style={{ width: `${pct}%`, background: color, height: '100%', transition: 'width 0.5s ease' }} />
     </div>
   );
 }
 
-// ─── CompareTable ─────────────────────────────────────────────────────────────
 interface CompareTableProps {
   models: ComputerModel[];
   onRemove?: (id: string) => void;
 }
 
 const SCORE_KEYS = new Set(['performanceScore', 'efficiencyScore', 'valueScore', 'batteryScore']);
-const BAR_COLORS = ['bg-apple-blue', 'bg-apple-indigo', 'bg-purple-500', 'bg-teal-500'];
 
 export default function CompareTable({ models, onRemove }: CompareTableProps) {
   if (models.length === 0) return null;
 
   return (
-    <div className="w-full overflow-x-auto rounded-3xl liquid-glass">
-      <table className="w-full text-sm border-collapse" role="table" aria-label="Hardware comparison table">
-        {/* ── Header ── */}
+    <div className="w-full overflow-x-auto liquid-glass">
+      <table className="w-full text-xs border-collapse" role="table" aria-label="Hardware comparison">
         <thead>
-          <tr>
-            <th className="sticky left-0 z-10 liquid-glass p-4 text-left text-xs font-semibold text-apple-gray uppercase tracking-widest w-36 min-w-36" scope="col">
+          <tr className="border-b border-black/10 dark:border-white/8">
+            <th
+              className="sticky left-0 z-10 liquid-glass p-3 text-left text-[0.55rem] font-black text-apple-gray uppercase tracking-widest w-28 min-w-28"
+              scope="col"
+            >
               Spec
             </th>
             {models.map((m, i) => (
-              <th key={m.id} scope="col" className="p-4 min-w-48 text-center">
+              <th key={m.id} scope="col" className="p-3 min-w-44 text-center border-l border-black/8 dark:border-white/5">
                 <div className="flex flex-col items-center gap-2">
-                  {/* Icon */}
                   <span
-                    className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${m.gradient} flex items-center justify-center text-3xl shadow-md`}
+                    className="ascii-icon w-12 h-8 text-[0.6rem]"
+                    style={{ color: ACCENT_COLORS[i % ACCENT_COLORS.length], borderColor: ACCENT_COLORS[i % ACCENT_COLORS.length] }}
                     aria-hidden="true"
                   >
-                    {m.icon}
+                    {(m.subtype ?? m.type ?? 'DEV').slice(0, 3).toUpperCase()}
                   </span>
                   <div>
-                    <p className="font-semibold text-apple-dark dark:text-apple-light leading-tight text-sm">{m.name}</p>
-                    <p className="text-xs text-apple-gray dark:text-apple-mid-gray">{m.brand}</p>
+                    <p className="font-bold text-apple-dark dark:text-apple-light text-[0.75rem] leading-tight">{m.name}</p>
+                    <p className="text-[0.6rem] text-apple-gray dark:text-apple-mid-gray uppercase tracking-wide mt-0.5">{m.brand}</p>
                     {m.badge && (
-                      <span className="mt-1 inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold bg-apple-blue/12 text-apple-blue">
-                        {m.badge}
-                      </span>
+                      <span className="label-chip text-apple-orange border-apple-orange mt-1">{m.badge}</span>
                     )}
                   </div>
                   {onRemove && (
                     <button
                       onClick={() => onRemove(m.id)}
-                      aria-label={`Remove ${m.name} from comparison`}
-                      className="text-[11px] text-apple-gray hover:text-apple-red transition-colors duration-150"
+                      aria-label={`Remove ${m.name}`}
+                      className="text-[0.58rem] font-bold uppercase tracking-widest text-apple-gray hover:text-apple-red transition-colors duration-150 border border-current px-2 py-0.5"
                     >
                       Remove
                     </button>
                   )}
-                  <div className={`w-full h-0.5 rounded-full ${BAR_COLORS[i % BAR_COLORS.length]}`} aria-hidden="true" />
+                  <div style={{ width: '100%', height: '2px', background: ACCENT_COLORS[i % ACCENT_COLORS.length] }} aria-hidden="true" />
                 </div>
               </th>
             ))}
           </tr>
         </thead>
 
-        {/* ── Body ── */}
         <tbody>
           {SPEC_ROWS.map((row, rowIdx) => {
-            // Skip score rows that have no values
             if (SCORE_KEYS.has(row.key) && models.every(m => getNumericValue(m, row.key) === null)) return null;
-            // Skip non-score text rows that have no values in any model
             const allEmpty = models.every(m => {
               const v = (m as unknown as Record<string, unknown>)[row.key];
               return v === undefined || v === null || v === '';
@@ -132,38 +121,37 @@ export default function CompareTable({ models, onRemove }: CompareTableProps) {
             return (
               <tr
                 key={row.key}
-                className={`border-t border-black/5 dark:border-white/5 ${rowIdx % 2 === 0 ? '' : 'bg-black/2 dark:bg-white/2'}`}
+                className={`border-t border-black/5 dark:border-white/4 ${rowIdx % 2 === 1 ? 'bg-black/[0.015] dark:bg-white/[0.015]' : ''}`}
               >
-                {/* Label cell */}
-                <td className="sticky left-0 z-10 liquid-glass p-4 text-xs font-medium text-apple-gray dark:text-apple-mid-gray uppercase tracking-wide">
+                <td className="sticky left-0 z-10 liquid-glass p-3 text-[0.58rem] font-black text-apple-gray uppercase tracking-widest">
                   {row.label}
                 </td>
 
-                {/* Value cells */}
                 {models.map((m, colIdx) => {
                   const isWinner = bestIdx === colIdx;
                   const numVal = getNumericValue(m, row.key);
                   const displayVal = formatValue(m, row);
+                  const accent = ACCENT_COLORS[colIdx % ACCENT_COLORS.length];
 
                   return (
-                    <td key={m.id} className="p-4 text-center align-top">
-                      <div className="flex flex-col items-center gap-1">
+                    <td key={m.id} className="p-3 text-center align-top border-l border-black/5 dark:border-white/4">
+                      <div className="flex flex-col items-center gap-0.5">
                         <span
-                          className={`font-medium leading-snug ${
+                          className={`font-bold leading-snug text-[0.75rem] ${
                             isWinner && models.length > 1
-                              ? 'text-apple-blue font-semibold'
+                              ? 'font-black'
                               : 'text-apple-dark dark:text-apple-light'
                           }`}
+                          style={isWinner && models.length > 1 ? { color: accent } : undefined}
                         >
                           {displayVal}
                           {isWinner && models.length > 1 && (
-                            <span className="ml-1 text-[10px] font-bold text-apple-blue" aria-label="Best value">★</span>
+                            <span className="ml-1 text-[0.55rem] font-black" aria-label="Best">▲</span>
                           )}
                         </span>
 
-                        {/* Score bar for numeric score keys */}
                         {SCORE_KEYS.has(row.key) && numVal !== null && (
-                          <ScoreBar value={numVal} color={BAR_COLORS[colIdx % BAR_COLORS.length]} />
+                          <ScoreBar value={numVal} color={accent} />
                         )}
                       </div>
                     </td>
